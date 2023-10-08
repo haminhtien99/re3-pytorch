@@ -64,7 +64,7 @@ def main(args):
     data_loader = pt_dataset.get_data_loader(num_unrolls, batch_size, args.num_threads, dataset_name)
     batch_iter = iter(data_loader)
 
-    network = Re3SmallNet(device, args)
+    network = Re3SmallNet(device, 512, args)
     network.setup_optimizer(1e-5)
     network.to(device)
     network.train()
