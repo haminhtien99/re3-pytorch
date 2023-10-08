@@ -39,9 +39,10 @@ def get_next_image_crops(args):
 def main(args):
     num_unrolls = args.num_unrolls
     batch_size = args.batch_size
+    dataset_name = args.dataset_name
     timing = args.timing
-    debug = args.debug or args.output
 
+    debug = args.debug or args.output
     device = pt_util.setup_devices(args.device)[0]
     np.set_printoptions(suppress=True)
     np.set_printoptions(precision=4)
@@ -60,7 +61,7 @@ def main(args):
             os.makedirs(tensorboard_dir)
         train_logger = tensorboard_logger.Logger(tensorboard_dir)
 
-    data_loader = pt_dataset.get_data_loader(num_unrolls, batch_size, args.num_threads)
+    data_loader = pt_dataset.get_data_loader(num_unrolls, batch_size, args.num_threads, dataset_name)
     batch_iter = iter(data_loader)
 
     network = Re3SmallNet(device, args)
@@ -288,6 +289,7 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--output", action="store_true", default=False)
     parser.add_argument("-c", "--clear-snapshots", action="store_true", default=False, dest="clearSnapshots")
     parser.add_argument("--num-threads", action="store", default=2, type=int)
+    parser.add_argument("--dataset-name", action = "store", default = "my_dataset")
     parser.add_argument("--run-val", action="store_true", default=False)
     parser.add_argument("--val-device", type=str, default="0", help="Device number or string for val process to use.")
     parser.add_argument("-m", "--max-steps", type=int, default=NUM_ITERATIONS, help="Number of steps to run trainer.")

@@ -33,7 +33,8 @@ class VideoDataset(torch.utils.data.Dataset):
         self.datasets = []
         self.key_lookup = {}
 
-        self.create_keys()
+        # self.create_keys()
+        # self.add_dataset(dataset_name)
 
     def add_dataset(self, dataset_name):
         dataset_ind = len(self.image_paths)
@@ -113,8 +114,9 @@ def collate_fn(batch):
     return batch
 
 
-def get_data_loader(num_unrolls, batch_size, num_threads):
+def get_data_loader(num_unrolls, batch_size, num_threads, dataset_name):
     dataset = VideoDataset(num_unrolls)
+    dataset.add_dataset(dataset_name)
     data_loader = DataLoader(
         dataset, batch_size=batch_size, num_workers=num_threads, shuffle=False, pin_memory=True, collate_fn=collate_fn
     )

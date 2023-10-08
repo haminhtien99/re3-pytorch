@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.
 from constants import DATA_DIR
 
 
-def get_data_for_dataset(dataset_name, mode):
+def get_data_for_dataset(dataset_name, mode): # mode = train/test
     # Implement this for each dataset.
     dataset = None
     if dataset_name == "imagenet_video":
@@ -60,5 +60,13 @@ def get_data_for_dataset(dataset_name, mode):
         gt = np.load(datadir + "/labels/" + mode + "/labels.npy")
         image_paths = [
             image_datadir + "/" + line.strip() for line in open(datadir + "/labels/" + mode + "/image_names.txt")
+        ]
+    elif dataset_name == "my_dataset":
+        # datadir = os.path.join(os.path.dirname(__file__), "datasets")
+        datadir = "/content/drive/MyDrive/Re3-Object-Tracking/re3-pytorch/data/"
+        image_datadir = os.path.join(datadir,"images")
+        gt = np.load(datadir + "/labels/" + mode+ "/labels.npy")
+        image_paths = [
+            image_datadir + "/" + line.strip() for line in open(datadir + "/labels/"+mode + "/images.txt")
         ]
     return {"gt": gt, "image_paths": image_paths, "dataset": dataset}
