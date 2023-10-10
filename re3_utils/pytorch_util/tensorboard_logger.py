@@ -132,7 +132,7 @@ class Logger(object):
                 var = np.tile(var, [1, 1, 3, 1])
                 var_shape = var.shape
             summary_image = kernel_to_image(var[:, :3, :, :])[np.newaxis, ...]
-            self.image_summary(scope, summary_image, step, increment_counter)
+            # self.image_summary(scope, summary_image, step, increment_counter)
 
     def image_summary(self, tag, images, step, increment_counter):
         """Log a list of images."""
