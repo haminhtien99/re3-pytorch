@@ -56,3 +56,6 @@ Please cite Re3 in your publications if it helps your research:
 ```
 ## Code by me
 [Dataset on Drive](https://drive.google.com/drive/folders/1-F5p142tMNn7o_K7odaz2M5YsjMPxicf?usp=sharing)
+[weith on Drive](https://drive.google.com/drive/folders/1-BiAla11E9bP_fjFhL_bJZB2hht_fOLF?usp=sharing)
+[Training]()
+[Test](test.ipynb)
